@@ -61,12 +61,10 @@ class CallbackContainer(object):
         self.info['step_elapsed'] += 1
 
     def on_batch_end(self, batch):
-
         # Necessary check for logger (done here so as to pass
         # losses + metrics to info and allow other callbacks to
         # access the information
-        if self.info['step'] % self.trainer.print_every == 0 \
-                and self.info['step_elapsed'] > self.trainer.print_every:
+        if self.info['step'] % self.trainer.print_every == 0:
             self.info['print'] = True
             # If we 'print' then we want to log,
             # therefore we evaluate on all monitored datasets
